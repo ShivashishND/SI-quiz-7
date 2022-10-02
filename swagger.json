@@ -1,0 +1,267 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "SI Express APP",
+    "description": "CRUD API Application for System Integration Course"
+  },
+  "host": "134.122.16.15:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/orders": {
+      "get": {
+        "summary": "Get all orders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/avg_outstanding": {
+      "get": {
+        "summary": "Gives average outstanding amount grouped by City.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/agent_by_city/{city}": {
+      "get": {
+        "summary": "Return Agents by city",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "City Name",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/order/{id}": {
+      "get": {
+        "summary": "Give details of a order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+
+      "post": {
+        "summary": "Create an order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order number",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Order Amount",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "403": {
+            "description": "Order Exists",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+
+      "put": {
+        "summary": "Create/Update an order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order number",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Order Amount",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Order Created",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "200": {
+            "description": "Order Updated",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+
+      "patch": {
+        "summary": "Update a given order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order number",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Order Amount",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+
+      "delete": {
+        "summary": "Delete an order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Order": {
+      "type": "object",
+      "properties": {
+        "ord_amount": {
+          "type": "string"
+        },
+        "advance_amount": {
+          "type": "string"
+        },
+        "ord_date": {
+          "type": "string"
+        },
+        "cust_code": {
+          "type": "string"
+        },
+        "agent_code": {
+          "type": "string"
+        },
+        "ord_description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+
